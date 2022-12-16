@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment</title>
+    <link rel="stylesheet" href="parent.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2>Parent window!!</h2>
+      <div>
+        <iframe src="form.html" width="300px" height="500px"></iframe>
+      </div>
+      <p>Result</p>
+      <div id="Message"></div>
+    </div>
+  </body>
+  <script>
+    window.addEventListener("message", function (event) {
+      console.log(event.data); // Message received from child
+
+      const message = document.querySelector("#Message");
+      var msg = "";
+      event.data.forEach((element) => {
+        console.log(element);
+        for (var key in element) {
+          msg += `<p>"${key}": "${element[key]}"</p>`;
+        }
+      });
+      message.innerHTML = msg;
+    });
+  </script>
+</html>
